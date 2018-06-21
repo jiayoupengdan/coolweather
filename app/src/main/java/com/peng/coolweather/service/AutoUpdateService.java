@@ -1,4 +1,3 @@
-/*
 package com.peng.coolweather.service;
 
 import android.app.AlarmManager;
@@ -21,8 +20,9 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class AutoUpdateService extends Service {
-    public AutoUpdateService() {
-    }
+
+    /*public AutoUpdateService() {
+    }*/
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -53,11 +53,6 @@ public class AutoUpdateService extends Service {
                     "&key=bc0418b57b2d4918819d3974ac1285d9";
             HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
                 @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-
-                @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String responseText = response.body().string();
                     Weather weather = Utility.handleWeatherResponse(responseText);
@@ -69,6 +64,12 @@ public class AutoUpdateService extends Service {
                     }
 
                 }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
             });
         }
     }
@@ -76,11 +77,6 @@ public class AutoUpdateService extends Service {
     private void updateBingPic(){
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String bingPic = response.body().string();
@@ -90,7 +86,12 @@ public class AutoUpdateService extends Service {
                 editor.apply();
 
             }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
         });
     }
 }
-*/

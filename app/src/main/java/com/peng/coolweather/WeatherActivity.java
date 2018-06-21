@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.peng.coolweather.gson.Forecast;
 import com.peng.coolweather.gson.Weather;
+import com.peng.coolweather.service.AutoUpdateService;
 import com.peng.coolweather.util.HttpUtil;
 import com.peng.coolweather.util.Utility;
 
@@ -241,7 +242,7 @@ public class WeatherActivity extends AppCompatActivity {
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
 
-        /*Intent intent = new Intent(this,AutoUpdateService.class);
-        startService(intent);*/
+        Intent intent = new Intent(this,AutoUpdateService.class);
+        startService(intent);
     }
 }
